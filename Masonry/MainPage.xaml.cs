@@ -12,7 +12,6 @@ namespace Masonry
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
         <style type='text/css'>
-html, head, body { width=100%; height=100% }
 * { box-sizing: border-box; }
 
 /* force scrollbar */
@@ -22,9 +21,9 @@ body { font-family: sans-serif; }
 
 /* ---- grid ---- */
 
-.grid {
-  background: #DDD;
-}
+//.grid {
+//  background: #DDD;
+//}
 
 /* clear fix */
 .grid:after {
@@ -37,8 +36,9 @@ body { font-family: sans-serif; }
 
 .grid-sizer,
 .grid-item {
-  width: 50%;
   /* width: 33.333%; */
+  width: 50%;
+  padding: 2.5px;
 }
 
 .grid-item {
@@ -47,12 +47,11 @@ body { font-family: sans-serif; }
 
 .grid-item img {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
+
         </style>
         <body>
-<h1>Masonry - imagesLoaded callback</h1>
-
 <div class='grid'>
   <div class='grid-sizer' />
   <div class='grid-item'>
@@ -86,12 +85,30 @@ body { font-family: sans-serif; }
             <script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
             <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js'></script>
             <script id='render-js'>
-                var $grid = $('.grid').imagesLoaded(function () {
-                  $grid.masonry({
-                    itemSelector: '.grid-item',
-                    percentPosition: true,
-                    columnWidth: '.grid-sizer' });
-                });
+//var grid = document.querySelector('.grid');
+
+//var msnry = new Masonry( grid, {
+//  itemSelector: '.grid-item',
+//  columnWidth: '.grid-sizer',
+//  percentPosition: true
+//});
+
+//imagesLoaded( grid ).on( 'progress', function() {
+//  // layout Masonry after each image loads
+//  msnry.layout();
+//});
+
+var grid = document.querySelector('.grid');
+var msnry;
+
+imagesLoaded( grid, function() {
+  // init Isotope after all images have loaded
+  msnry = new Masonry( grid, {
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  });
+});
             </script>
         </body>
     </head>
