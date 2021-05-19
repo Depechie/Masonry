@@ -4,5 +4,6 @@
              x:Class="Masonry.MainPage">
 
     <WebView x:Name="MasonryWebView"
-             Source="{Binding HTMLSource}" />
+             Source="{Binding HTMLSource}"
+             Margin="2.5,30,2.5,10" />
 </ContentPage>
