@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Masonry.Controls"
              x:Class="Masonry.MainPage">
 
-    <WebView x:Name="MasonryWebView"
+    <!--<WebView x:Name="MasonryWebView"
              Source="{Binding HTMLSource}"
-             Margin="2.5,30,2.5,10" />
+             Margin="2.5,30,2.5,10" />-->
+
+    <controls:HybridWebView x:Name="webViewElement"
+                            Margin="2.5,30,2.5,10" />
 </ContentPage>

@@ -32,6 +32,16 @@ namespace Masonry
             HTMLSource.Html = InitHTMLSource();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            webViewElement.Source = new HtmlWebViewSource()
+            {
+                Html = InitHTMLSource()
+            };
+        }
+
         private void InitItems()
         {
             _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg");
