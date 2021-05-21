@@ -34,6 +34,7 @@ body {
 .grid__col-sizer {
   /* width: 32%; */
     width: 50%;
+    //padding: 2px;
 }
 
 /* hide by default */
@@ -82,6 +83,7 @@ imagesLoaded( grid, function() {
   msnry.options.itemSelector = '.grid__item';
   let items = grid.querySelectorAll('.grid__item');
   msnry.appended( items );
+//invokexamarinforms();
 });
 
 //-------------------------------------//
@@ -94,10 +96,20 @@ var nextPenSlugs = [
 ];
 
 function getPenPath() {
+    invokexamarinforms();
   let slug = nextPenSlugs[ this.loadCount ];
   if ( slug ) {
     return `/desandro/debug/${slug}`;
   }
+}
+
+function invokexamarinforms() {
+    try {
+        invokeCSharpAction('This is from Javascript in the WebView!');
+    }
+    catch(err) {
+        //alert(err);
+    }
 }
 
 //-------------------------------------//
@@ -140,6 +152,7 @@ let infScroll = new InfiniteScroll( grid, {
   <p class='infinite-scroll-error'>No more pages to load</p>
 </div>
 
+            <script src='https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js'></script>
             <script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
             <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js'></script>
             <script id='render-js'>##INLINEJS##</script>

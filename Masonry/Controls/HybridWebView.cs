@@ -20,9 +20,8 @@ namespace Masonry.Controls
         public void InvokeAction(string data)
         {
             if (_action == null || data == null)
-            {
                 return;
-            }
+
             _action.Invoke(data);
         }
     }

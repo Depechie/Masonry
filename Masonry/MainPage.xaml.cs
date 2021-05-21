@@ -36,10 +36,15 @@ namespace Masonry
         {
             base.OnAppearing();
 
+            webViewElement.RegisterAction(RequestFromJavaScript);
             webViewElement.Source = new HtmlWebViewSource()
             {
                 Html = InitHTMLSource()
             };
+        }
+
+        private void RequestFromJavaScript(string data)
+        {
         }
 
         private void InitItems()
@@ -57,19 +62,19 @@ namespace Masonry
             _items.Add("https://i.imgur.com/aPia86B.jpg");
             _items.Add("https://i.imgur.com/iQRKg2a.jpg");
 
-            _items.Add("https://i.imgur.com/XREWwIc.jpg");
-            _items.Add("https://i.imgur.com/MV9SvaP.jpg");
-            _items.Add("https://i.imgur.com/qjQ9XWl.jpg");
-            _items.Add("https://i.imgur.com/ZJ088Tk.jpg");
-            _items.Add("https://i.imgur.com/SuZLV2U.jpg");
-            _items.Add("https://i.imgur.com/71H2B0k.jpg");
-            _items.Add("https://i.imgur.com/vxOA4hg.jpg");
-            _items.Add("https://i.imgur.com/8kLXqdP.jpg");
-            _items.Add("https://i.imgur.com/QeN4jBt.jpg");
-            _items.Add("https://i.imgur.com/ahtrWkN.jpg");
-            _items.Add("https://i.imgur.com/fd1Mmhy.jpg");
-            _items.Add("https://i.imgur.com/AOgABvd.jpg");
-            _items.Add("https://i.imgur.com/ypd73RX.jpg");
+            //_items.Add("https://i.imgur.com/XREWwIc.jpg");
+            //_items.Add("https://i.imgur.com/MV9SvaP.jpg");
+            //_items.Add("https://i.imgur.com/qjQ9XWl.jpg");
+            //_items.Add("https://i.imgur.com/ZJ088Tk.jpg");
+            //_items.Add("https://i.imgur.com/SuZLV2U.jpg");
+            //_items.Add("https://i.imgur.com/71H2B0k.jpg");
+            //_items.Add("https://i.imgur.com/vxOA4hg.jpg");
+            //_items.Add("https://i.imgur.com/8kLXqdP.jpg");
+            //_items.Add("https://i.imgur.com/QeN4jBt.jpg");
+            //_items.Add("https://i.imgur.com/ahtrWkN.jpg");
+            //_items.Add("https://i.imgur.com/fd1Mmhy.jpg");
+            //_items.Add("https://i.imgur.com/AOgABvd.jpg");
+            //_items.Add("https://i.imgur.com/ypd73RX.jpg");
         }
 
         private string InitHTMLSource()
