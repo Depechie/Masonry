@@ -50,7 +50,10 @@ namespace Masonry
             if (!string.IsNullOrWhiteSpace(data) && int.Parse(data) is int pageIndex)
             {
                 var items = _extraItems[pageIndex];
-                string result = await webViewElement.EvaluateJavaScriptAsync($"invokeJSFromCSharp('{items}')");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    string result = await webViewElement.EvaluateJavaScriptAsync($"invokeJSFromCSharp('{items}')");
+                });
             }
         }
 
