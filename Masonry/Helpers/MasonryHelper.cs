@@ -82,7 +82,7 @@ imagesLoaded( grid, function() {
   msnry.appended( items );
 });
 
-function getPenPath() {
+function getPath() {
     invokeCSharpFromJS(this.loadCount);
     return '/0';
 }
@@ -106,7 +106,7 @@ function invokeJSFromCSharp(data) {
     for (i = 0; i < images.length; i++) {
         let elem = getItemElement(images[i]);
         fragment.appendChild( elem );
-        elems.push( elem );
+        elems.push(elem);
     }
     grid.appendChild( fragment );  
     msnry.appended( elems );
@@ -123,7 +123,7 @@ function getItemElement(content) {
 // init Infinte Scroll
 
 let infScroll = new InfiniteScroll( grid, {
-  path: getPenPath,
+  path: getPath,
   append: '.grid__item',
   outlayer: msnry,
   status: '.page-load-status',
@@ -141,7 +141,8 @@ let infScroll = new InfiniteScroll( grid, {
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
         <style type='text/css'>##CSS##</style>
-        <body>
+    </head>
+    <body>
 <div class='grid are-images-unloaded'>
   <div class='grid__col-sizer'></div>
   <div class='grid__gutter-sizer'></div>
@@ -163,8 +164,7 @@ let infScroll = new InfiniteScroll( grid, {
             <script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
             <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js'></script>
             <script id='render-js'>##INLINEJS##</script>
-        </body>
-    </head>
+    </body>    
 </html>
 ";
 
