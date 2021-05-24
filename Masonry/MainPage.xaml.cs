@@ -47,7 +47,7 @@ namespace Masonry
 
         private async void InvokeCSharpFromJS(string data)
         {
-            if (!string.IsNullOrWhiteSpace(data) && int.Parse(data) is int pageIndex)
+            if (!string.IsNullOrWhiteSpace(data) && int.Parse(data) is int pageIndex && _extraItems.ContainsKey(pageIndex))
             {
                 var items = _extraItems[pageIndex];
                 Device.BeginInvokeOnMainThread(async () =>

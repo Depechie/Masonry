@@ -64,27 +64,35 @@ button {
 ";
 
         private static string _inlineJScript = @"
+let pageIndex = 0;
+let loadNext = false;
+
+window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if(clientHeight + scrollTop >= scrollHeight - 100 && loadNext) {
+        loadNext = false;
+        invokeCSharpAction(pageIndex);
+        pageIndex++;
+	}
+});
+
 var grid = document.querySelector('.grid');
 var msnry = new Masonry( grid, {
-  columnWidth: '.grid__col-sizer',
-  itemSelector: 'none',
-  percentPosition: true,
-  stagger: 30,
-  visibleStyle: { transform: 'translateY(0)', opacity: 1 },
-  hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },  
+    columnWidth: '.grid__col-sizer',
+    itemSelector: 'none',
+    percentPosition: true,
+    stagger: 30,
+    visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+    hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },  
 });
 
-// initial items reveal
 imagesLoaded( grid, function() {
-  grid.classList.remove('are-images-unloaded');
-  msnry.options.itemSelector = '.grid__item';
-  let items = grid.querySelectorAll('.grid__item');
-  msnry.appended(items);
-});
+    grid.classList.remove('are-images-unloaded');
+    msnry.options.itemSelector = '.grid__item';
+    let items = grid.querySelectorAll('.grid__item');
 
-var appendButton = document.querySelector('.append-button');
-appendButton.addEventListener( 'click', function() {
-    invokeCSharpAction(0);
+    loadNext = true;
+    msnry.appended(items);
 });
 
 function invokeJSFromCSharp(data) {
@@ -103,6 +111,8 @@ function invokeJSFromCSharp(data) {
     grid.appendChild(fragment);
     var imageLoad = imagesLoaded(grid);
     imageLoad.on( 'progress', function() {  msnry.layout(); });
+
+    loadNext = true;
     msnry.appended(elems);
 }
 
@@ -131,8 +141,6 @@ function getItemElement(content) {
             <div class='grid__col-sizer'></div>
             ##ITEMS##
         </div>
-
-        <p><button class='append-button'>Append new items</button></p>
 
         <script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
         <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js'></script>
