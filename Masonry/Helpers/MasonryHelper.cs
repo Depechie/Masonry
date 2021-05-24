@@ -112,13 +112,6 @@ function getItemElement() {
     <img src='##ITEMSOURCE##' />
   </div>";
 
-        private static string _extraImages = @"          
-          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg'></div>
-          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg'></div>
-          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg'></div>
-          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg'></div>
-";
-
         private static string _body = @"
 <!DOCTYPE html>
 <html>
@@ -134,6 +127,10 @@ function getItemElement() {
           <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg'></div>
           <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg'></div>
           <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg'></div>
+          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg'></div>
+          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg'></div>
+          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg'></div>
+          <div class='grid__item'><img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg'></div>
         </div>
 
         <p><button class='append-button'>Append new items</button></p>
