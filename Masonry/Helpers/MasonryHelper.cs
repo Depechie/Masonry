@@ -84,25 +84,32 @@ imagesLoaded( grid, function() {
 
 var appendButton = document.querySelector('.append-button');
 appendButton.addEventListener( 'click', function() {
-  var elems = [];
-  var fragment = document.createDocumentFragment();
-  
-  for ( var i = 0; i < 3; i++ ) {
-    var elem = getItemElement();
-    fragment.appendChild(elem);
-    elems.push(elem);
-  }
-
-  grid.appendChild(fragment);
-  var imageLoad = imagesLoaded(grid);
-  imageLoad.on( 'progress', function() {  msnry.layout(); });
-  msnry.appended(elems);
+    invokeCSharpAction(0);
 });
 
-function getItemElement() {
+function invokeJSFromCSharp(data) {
+    var images = data.split('#');
+
+    var elems = [];
+    var fragment = document.createDocumentFragment();
+
+    var i;
+    for (i = 0; i < images.length; i++) {
+        var elem = getItemElement(images[i]);
+        fragment.appendChild(elem);
+        elems.push(elem);
+    }
+
+    grid.appendChild(fragment);
+    var imageLoad = imagesLoaded(grid);
+    imageLoad.on( 'progress', function() {  msnry.layout(); });
+    msnry.appended(elems);
+}
+
+function getItemElement(content) {
   var elem = document.createElement('div');
   elem.className = 'grid__item';
-  elem.innerHTML = '<img class=""image-grid__item"" src=""https://i.imgur.com/kXUHDn5.jpg"">';
+  elem.innerHTML = '<img class=""image-grid__item"" src=""' + content + '"">';
   return elem;
 }
 ";
