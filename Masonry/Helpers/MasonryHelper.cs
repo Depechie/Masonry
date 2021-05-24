@@ -58,9 +58,6 @@ body {
   text-align: center;
   color: #777;
 }
-
-/* loader ellips in separate pen CSS */
-
 ";
 
         private static string _inlineJScript = @"
@@ -83,33 +80,43 @@ imagesLoaded( grid, function() {
   msnry.options.itemSelector = '.grid__item';
   let items = grid.querySelectorAll('.grid__item');
   msnry.appended( items );
-//invokexamarinforms();
 });
 
-//-------------------------------------//
-// hack CodePen to load pens as pages
-
-var nextPenSlugs = [
-  '202252c2f5f192688dada252913ccf13',
-  'a308f05af22690139e9a2bc655bfe3ee',
-  '6c9ff23039157ee37b3ab982245eef28',
-];
-
 function getPenPath() {
-    invokexamarinforms();
-  let slug = nextPenSlugs[ this.loadCount ];
-  if ( slug ) {
-    return `/desandro/debug/${slug}`;
-  }
+    invokeCSharpFromJS(this.loadCount);
+    return '/0';
 }
 
-function invokexamarinforms() {
+function invokeCSharpFromJS(loadCount) {
     try {
-        invokeCSharpAction('This is from Javascript in the WebView!');
+        invokeCSharpAction(loadCount);
     }
     catch(err) {
         //alert(err);
     }
+}
+
+function invokeJSFromCSharp(data) {
+    var images = data.split('#');
+
+    var elems = [];
+    var fragment = document.createDocumentFragment();
+
+    var i;
+    for (i = 0; i < images.length; i++) {
+        let elem = getItemElement(images[i]);
+        fragment.appendChild( elem );
+        elems.push( elem );
+    }
+    grid.appendChild( fragment );  
+    msnry.appended( elems );
+}
+
+function getItemElement(content) {
+    var elem = document.createElement('div');
+    elem.className = 'grid__item';
+    elem.innerHTML = '<img src=""' + content + '"" />';
+    return elem;
 }
 
 //-------------------------------------//
@@ -125,7 +132,7 @@ let infScroll = new InfiniteScroll( grid, {
 
         private static string _gridItem = @"
   <div class='grid__item'>
-    <img src = '##ITEMSOURCE##' />
+    <img src='##ITEMSOURCE##' />
   </div>";
 
         private static string _body = @"

@@ -36,15 +36,34 @@ namespace Masonry
         {
             base.OnAppearing();
 
-            webViewElement.RegisterAction(RequestFromJavaScript);
+            webViewElement.RegisterAction(InvokeCSharpFromJS);
             webViewElement.Source = new HtmlWebViewSource()
             {
                 Html = InitHTMLSource()
             };
         }
 
-        private void RequestFromJavaScript(string data)
+        private async void InvokeCSharpFromJS(string data)
         {
+            List<string> extraItems = new List<string>();
+
+            extraItems.Add("https://i.imgur.com/XREWwIc.jpg");
+            extraItems.Add("https://i.imgur.com/MV9SvaP.jpg");
+            extraItems.Add("https://i.imgur.com/qjQ9XWl.jpg");
+            extraItems.Add("https://i.imgur.com/ZJ088Tk.jpg");
+            extraItems.Add("https://i.imgur.com/SuZLV2U.jpg");
+            extraItems.Add("https://i.imgur.com/71H2B0k.jpg");
+            extraItems.Add("https://i.imgur.com/vxOA4hg.jpg");
+            extraItems.Add("https://i.imgur.com/8kLXqdP.jpg");
+            extraItems.Add("https://i.imgur.com/QeN4jBt.jpg");
+            extraItems.Add("https://i.imgur.com/ahtrWkN.jpg");
+            extraItems.Add("https://i.imgur.com/fd1Mmhy.jpg");
+            extraItems.Add("https://i.imgur.com/AOgABvd.jpg");
+            extraItems.Add("https://i.imgur.com/ypd73RX.jpg");
+
+            var items = string.Join("#", extraItems);
+
+            string result = await webViewElement.EvaluateJavaScriptAsync($"invokeJSFromCSharp('{items}')");
         }
 
         private void InitItems()
