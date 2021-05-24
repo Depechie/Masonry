@@ -68,6 +68,10 @@ namespace Masonry
             _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg");
             _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg");
             _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg");
+            _items.Add("https://i.imgur.com/laIuV0D.jpg");
+            _items.Add("https://i.imgur.com/777dcVU.jpg");
+            _items.Add("https://i.imgur.com/ZPPFND3.jpg");
+            _items.Add("https://i.imgur.com/EpYbuG7.jpg");
         }
 
         private void InitExtraItems()
@@ -95,6 +99,9 @@ namespace Masonry
             extraItems.Add("https://i.imgur.com/fd1Mmhy.jpg");
             extraItems.Add("https://i.imgur.com/AOgABvd.jpg");
             extraItems.Add("https://i.imgur.com/ypd73RX.jpg");
+            extraItems.Add("https://i.imgur.com/kXUHDn5.jpg");
+            extraItems.Add("https://i.imgur.com/Qmz61wo.jpg");
+            extraItems.Add("https://i.imgur.com/aPia86B.jpg");
 
             _extraItems.Add(1, string.Join("#", extraItems));
         }
