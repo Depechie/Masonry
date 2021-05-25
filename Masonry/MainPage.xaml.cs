@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Masonry.Helpers;
+using Masonry.Models;
+using Masonry.Services;
 using Xamarin.Forms;
 
 namespace Masonry
 {
     public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
-        private List<string> _items = new List<string>();
-        private Dictionary<int, string> _extraItems = new Dictionary<int, string>();
+        private DataService _dataService = new DataService();
 
         private HtmlWebViewSource _htmlSource = new HtmlWebViewSource();
         public HtmlWebViewSource HTMLSource
@@ -29,8 +31,6 @@ namespace Masonry
             InitializeComponent();
             BindingContext = this;
 
-            InitItems();
-            InitExtraItems();
             HTMLSource.Html = InitHTMLSource();
         }
 
@@ -45,71 +45,29 @@ namespace Masonry
             };
         }
 
-        private async void InvokeCSharpFromJS(string data)
+        private void InvokeCSharpFromJS(string data)
         {
-            if (!string.IsNullOrWhiteSpace(data) && int.Parse(data) is int pageIndex && _extraItems.ContainsKey(pageIndex))
+            if (!string.IsNullOrWhiteSpace(data) && int.Parse(data) is int pageIndex)
             {
-                var items = _extraItems[pageIndex];
-                Device.BeginInvokeOnMainThread(async () =>
+                IEnumerable<string> artistPictures = _dataService.GetPhotos(Artists.Depechie, ++pageIndex);
+
+                if (artistPictures.Any())
                 {
-                    string result = await webViewElement.EvaluateJavaScriptAsync($"invokeJSFromCSharp('{items}')");
-                });
+                    var items = string.Join("#", artistPictures);
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        string result = await webViewElement.EvaluateJavaScriptAsync($"invokeJSFromCSharp('{items}')");
+                    });
+                }
             }
-        }
-
-        private void InitItems()
-        {
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg");
-            _items.Add("https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg");
-            _items.Add("https://i.imgur.com/laIuV0D.jpg");
-            _items.Add("https://i.imgur.com/777dcVU.jpg");
-            _items.Add("https://i.imgur.com/ZPPFND3.jpg");
-            _items.Add("https://i.imgur.com/EpYbuG7.jpg");
-        }
-
-        private void InitExtraItems()
-        {
-            List<string> extraItems = new List<string>();
-
-            extraItems.Add("https://i.imgur.com/Qmz61wo.jpg");
-            extraItems.Add("https://i.imgur.com/aPia86B.jpg");
-            extraItems.Add("https://i.imgur.com/iQRKg2a.jpg");
-            extraItems.Add("https://i.imgur.com/XREWwIc.jpg");
-            extraItems.Add("https://i.imgur.com/MV9SvaP.jpg");
-            extraItems.Add("https://i.imgur.com/qjQ9XWl.jpg");
-            extraItems.Add("https://i.imgur.com/ZJ088Tk.jpg");
-            extraItems.Add("https://i.imgur.com/SuZLV2U.jpg");
-            extraItems.Add("https://i.imgur.com/71H2B0k.jpg");
-
-            _extraItems.Add(0, string.Join("#", extraItems));
-
-            extraItems.Clear();
-
-            extraItems.Add("https://i.imgur.com/vxOA4hg.jpg");
-            extraItems.Add("https://i.imgur.com/8kLXqdP.jpg");
-            extraItems.Add("https://i.imgur.com/QeN4jBt.jpg");
-            extraItems.Add("https://i.imgur.com/ahtrWkN.jpg");
-            extraItems.Add("https://i.imgur.com/fd1Mmhy.jpg");
-            extraItems.Add("https://i.imgur.com/AOgABvd.jpg");
-            extraItems.Add("https://i.imgur.com/ypd73RX.jpg");
-            extraItems.Add("https://i.imgur.com/kXUHDn5.jpg");
-            extraItems.Add("https://i.imgur.com/Qmz61wo.jpg");
-            extraItems.Add("https://i.imgur.com/aPia86B.jpg");
-
-            _extraItems.Add(1, string.Join("#", extraItems));
         }
 
         private string InitHTMLSource()
         {
+            IEnumerable<string> artistPictures = _dataService.GetPhotos(Artists.Depechie, 0);
             var body = MasonryHelper.GenerateHTMLSource();
-            var items = MasonryHelper.GenerateItemSource(_items);
+            var items = MasonryHelper.GenerateItemSource(artistPictures);
 
             return MasonryHelper.InsertItems(body, items);
         }

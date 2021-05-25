@@ -15,7 +15,24 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\JosefinSans-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\JosefinSans-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Controls\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Fonts\JosefinSans-Light.ttf" />
+    <None Remove="Resources\Fonts\JosefinSans-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+      <Compile Update="Resources\Styles.xaml.cs">
+          <DependentUpon>Styles.xaml</DependentUpon>
+      </Compile>
   </ItemGroup>
 </Project>

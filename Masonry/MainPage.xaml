@@ -4,13 +4,31 @@
              xmlns:controls="clr-namespace:Masonry.Controls"
              x:Class="Masonry.MainPage">
 
-    <Grid RowDefinitions="auto, *"
-          Margin="0,30,0,0"
-          RowSpacing="0" ColumnSpacing="0">
-        <Label Text="Porfolio"
-               Margin="20,0,20,10"
-               Grid.Row="0" />
+    <Grid RowDefinitions="auto, auto, *">
+        <Grid.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS" Value="0,30,0,0" />
+                <On Platform="Android" Value="0,10,0,0" />
+            </OnPlatform>
+        </Grid.Margin>
+
+        <StackLayout Orientation="Horizontal"
+                     Margin="18,10,18,5"
+                     HorizontalOptions="FillAndExpand"
+                     Grid.Row="1">
+            <Label Text="Porfolio"
+                   FontFamily="JosefinRegular"
+                   FontSize="20"
+                   TextColor="#4d4d4d"
+                   HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+
+            <Label Text="Glenn Versweyveld"
+                   FontFamily="JosefinRegular"
+                   FontSize="16"
+                   HorizontalOptions="EndAndExpand" VerticalOptions="End" />
+        </StackLayout>
+
         <controls:HybridWebView x:Name="webViewElement"
-                                Grid.Row="1" />
+                                Grid.Row="2" />
     </Grid>
 </ContentPage>
