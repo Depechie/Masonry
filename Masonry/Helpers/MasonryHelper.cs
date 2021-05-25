@@ -24,7 +24,8 @@ body {
 }
 
 .grid {
-  max-width: 1200px;
+    max-width: 1200px;
+    margin-left: 8px; margin-right: 8px; margin-bottom: 10px;
 }
 
 /* reveal grid after images loaded */
@@ -50,12 +51,14 @@ body {
 }
 
 .grid__item {
-  float: left;
+    float: left;
+    padding: 8px;
 }
 
 .grid__item img {
   display: block;
   max-width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button {

@@ -4,10 +4,12 @@
              xmlns:controls="clr-namespace:Masonry.Controls"
              x:Class="Masonry.MainPage">
 
-    <!--<WebView x:Name="MasonryWebView"
-             Source="{Binding HTMLSource}"
-             Margin="2.5,30,2.5,10" />-->
-
-    <controls:HybridWebView x:Name="webViewElement"
-                            Margin="2.5,30,2.5,10" />
+    <Grid RowDefinitions="auto, *"
+          Margin="0,30,0,0">
+        <Label Text="Porfolio"
+               Margin="20,0,20,0"
+               Grid.Row="0" />
+        <controls:HybridWebView x:Name="webViewElement"
+                                Grid.Row="1" />
+    </Grid>
 </ContentPage>
