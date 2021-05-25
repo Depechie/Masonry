@@ -20,6 +20,7 @@ namespace Masonry.Droid.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<WebView> e)
         {
             base.OnElementChanged(e);
+            Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
 
             if (e.OldElement != null)
             {

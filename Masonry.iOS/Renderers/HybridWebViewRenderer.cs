@@ -28,6 +28,8 @@ namespace Masonry.iOS.Renderers
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
             base.OnElementChanged(e);
+            this.Opaque = false;
+            this.BackgroundColor = Color.Transparent.ToUIColor();
 
             if (e.OldElement != null)
             {

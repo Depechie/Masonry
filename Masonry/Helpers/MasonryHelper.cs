@@ -25,7 +25,7 @@ body {
 
 .grid {
     max-width: 1200px;
-    margin-left: 8px; margin-right: 8px; margin-bottom: 10px;
+    margin-left: 8px; margin-right: 8px; margin-bottom: 20px;
 }
 
 /* reveal grid after images loaded */

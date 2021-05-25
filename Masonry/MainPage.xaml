@@ -5,9 +5,10 @@
              x:Class="Masonry.MainPage">
 
     <Grid RowDefinitions="auto, *"
-          Margin="0,30,0,0">
+          Margin="0,30,0,0"
+          RowSpacing="0" ColumnSpacing="0">
         <Label Text="Porfolio"
-               Margin="20,0,20,0"
+               Margin="20,0,20,10"
                Grid.Row="0" />
         <controls:HybridWebView x:Name="webViewElement"
                                 Grid.Row="1" />
