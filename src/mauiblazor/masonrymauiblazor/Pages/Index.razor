@@ -1,0 +1,11 @@
+@page "/"
+@inherits IndexViewModel
+@implements IDisposable
+
+<div class="grid are-images-unloaded">
+    <div class='grid__col-sizer'></div>
+    @foreach (var image in Images)
+    {
+        <div class="grid__item"><img src="@image"></div>
+    }
+</div>
